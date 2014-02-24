@@ -3,22 +3,46 @@ package co.com.pradalabs.odontoclinicbackend.modelo;
 
 import java.util.List;
 
-public class Clinica {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+import com.google.appengine.api.datastore.Key;
 
+
+@PersistenceCapable
+public class Clinica {
+	
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+	
+	@Persistent
     private List<Paciente> Pacientes;
 
+	@Persistent
     private int cdClinica;
 
+	@Persistent
     private String dsClinica;
 
+    @Persistent
     private List<Profesional> dsProfesionales;
 
+    @Persistent
     private Horario dsHorario;
 
+    @Persistent
     private List<Admin> dsAdmin;
-
+    
+    
+    @Persistent
     private List<Contabilidad> dsContabilidad;
+    
 
+    @Persistent
+    private List<Precios> listaPrecios;
+    
     public Clinica () {
     }
 
@@ -79,5 +103,13 @@ public class Clinica {
         this.dsProfesionales = val;
     }
 
+	public List<Precios> getListaPrecios() {
+		return listaPrecios;
+	}
+
+	public void setListaPrecios(List<Precios> listaPrecios) {
+		this.listaPrecios = listaPrecios;
+	}
+    
 }
 
