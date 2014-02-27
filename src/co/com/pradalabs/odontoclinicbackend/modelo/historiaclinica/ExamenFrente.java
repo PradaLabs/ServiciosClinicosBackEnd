@@ -1,21 +1,42 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class ExamenFrente {
 
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsTipoCara;
 
+	@Persistent
     private int cdTipoCara;
 
+	@Persistent
     private Boolean snAsimetriaFrente;
 
+	@Persistent
     private String dsAsimetriaFrente;
 
+	@Persistent
     private String dsLeptoprosopo;
 
+	@Persistent
     private int cdLeptoprosopo;
 
+	@Persistent
     private String dsTipoSonrisa;
 
+	@Persistent
     private int cdTipoSonrisa;
 
     public ExamenFrente () {
@@ -85,5 +106,13 @@ public class ExamenFrente {
         this.snAsimetriaFrente = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

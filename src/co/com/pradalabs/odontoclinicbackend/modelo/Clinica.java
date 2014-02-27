@@ -7,6 +7,7 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+
 import com.google.appengine.api.datastore.Key;
 
 
@@ -36,7 +37,7 @@ public class Clinica {
     private List<Admin> dsAdmin;
     
     
-    @Persistent
+    @Persistent(mappedBy = "clinica")
     private List<Contabilidad> dsContabilidad;
     
 
@@ -109,6 +110,14 @@ public class Clinica {
 
 	public void setListaPrecios(List<Precios> listaPrecios) {
 		this.listaPrecios = listaPrecios;
+	}
+
+	public Key getId() {
+		return key;
+	}
+
+	public void setId(Key key) {
+		this.key = key;
 	}
     
 }

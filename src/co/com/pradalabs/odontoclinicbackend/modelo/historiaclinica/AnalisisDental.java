@@ -1,33 +1,61 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
 public class AnalisisDental {
+	
 
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+
+	@Persistent
     private int cdRelaDereCanina;
-
+	
+	@Persistent
     private int cdRelaDereMolar;
 
+	@Persistent
     private int cdRelaIzqCanina;
 
+	@Persistent
     private int cdRelaIzqMolar;
 
+	@Persistent
     private int cdOverjet;
 
+	@Persistent
     private int cdOverBite;
 
+	@Persistent
     private MorfologiaArcoDentario dsMorfologiaArcoDentario;
 
+	@Persistent
     private LineaMedia dsLineaMedia;
 
+	@Persistent
     private RelacionInterArco dsRelacionInterArco;
 
+	@Persistent
     private Rotaciones dsRotaciones;
 
+	@Persistent
     private Inclinaciones dsInclinaciones;
 
+	@Persistent
     private DientesAusentes dsDientesAusentes;
 
+	@Persistent
     private DientesErupcion DientesErupcion;
 
+	@Persistent
     private AnalisisEspacio dsAnalisisEspacio;
 
     public AnalisisDental () {
@@ -159,5 +187,12 @@ public class AnalisisDental {
         this.dsRotaciones = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 }
 

@@ -2,19 +2,36 @@ package co.com.pradalabs.odontoclinicbackend.modelo;
 
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
 public class Horario {
-
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsHorarioHabil;
-
+	
+	@Persistent
     private String dsHorarioEspecial;
-
+	
+	@Persistent
     private List<ControlHorario> dsControlHorario;
-
+	
+	@Persistent
     private int cdClinica;
-
+	
     public Horario () {
     }
-
+    
     public int getCdClinica () {
         return cdClinica;
     }
@@ -47,5 +64,13 @@ public class Horario {
         this.dsHorarioHabil = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

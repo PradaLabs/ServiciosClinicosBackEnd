@@ -3,6 +3,13 @@ package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.Diagnostico;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.Diente;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.EnfermedadPaciente;
@@ -10,52 +17,81 @@ import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.ExamenFisico;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.PlanTratamientoIdeal;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.Protesis;
 
+@PersistenceCapable
 public class HistoriaClinicaOdonto {
 
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String DNI;
 
+	@Persistent
     private String dsEps;
 
+	@Persistent
     private String dsTipoVinculacion;
 
+	@Persistent
     private String dsAlertaMedica;
 
+	@Persistent
     private Calendar FeHistoriaClinica;
 
+	@Persistent
     private int Hora;
 
+	@Persistent
     private String dsMotivoConsulta;
 
+	@Persistent
     private EnfermedadPaciente dsEnfermedadPaciente;
 
+	@Persistent
     private String dsUltimaVisita;
 
+	@Persistent
     private String dsMotivoUltimaVisita;
 
+	@Persistent
     private int cdHigieneOral;
 
+	@Persistent
     private Boolean snCepilloDental;
 
+	@Persistent
     private String dsNmVecesCepillada;
 
+	@Persistent
     private Boolean snSedaDental;
 
+	@Persistent
     private Boolean snEnjuagueBucal;
 
+	@Persistent
     private ExamenFisico dsExamenFisico;
 
+	@Persistent
     private PlanTratamientoIdeal dsTratamientoIdeal;
 
+	@Persistent
     private Diagnostico dsDiagnostico;
 
+	@Persistent
     private String dsPlanTratamientoAcordado;
 
+	@Persistent
     private List<Diente> dsDientes;
 
+	@Persistent
     private Protesis dsProtesis;
 
+	@Persistent
     private String dsOdontograma;
 
+	@Persistent
     private int nmHistoriaClinica;
 
     public HistoriaClinicaOdonto () {
@@ -244,6 +280,15 @@ public class HistoriaClinicaOdonto {
     public void setSnSedaDental (Boolean val) {
         this.snSedaDental = val;
     }
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 
 }
 

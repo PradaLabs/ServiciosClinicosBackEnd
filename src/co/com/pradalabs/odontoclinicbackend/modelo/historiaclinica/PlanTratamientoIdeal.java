@@ -1,17 +1,36 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
 public class PlanTratamientoIdeal {
 
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsperiodoncia;
-
+	
+	@Persistent
     private String dsoperatoria;
 
+	@Persistent
     private String dsendodoncia;
 
+	@Persistent
     private String dsrehabilitacion;
 
+	@Persistent
     private String dscirugia;
 
+	@Persistent
     private String dsortodoncia;
 
     public PlanTratamientoIdeal () {
@@ -65,5 +84,13 @@ public class PlanTratamientoIdeal {
         this.dsrehabilitacion = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

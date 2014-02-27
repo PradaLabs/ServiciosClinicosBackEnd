@@ -1,25 +1,47 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 
-public class DatosBasicos {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
+public class DatosBasicos {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsNombre;
 
+	@Persistent
     private String dsApellido;
 
+	@Persistent
     private String dsTipoDocumento;
 
+	@Persistent
     private String dsDireccion;
 
+	@Persistent
     private String dsTelefono;
 
+	@Persistent
     private String dsCelular;
 
+	@Persistent
     private String Ciudad;
 
+	@Persistent
     private String dsDepartamento;
 
+	@Persistent
     private String dsCorreoElectronico;
 
+	@Persistent
     private String DNI;
 
     public DatosBasicos () {
@@ -105,5 +127,14 @@ public class DatosBasicos {
         this.dsTipoDocumento = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
+    
 }
 

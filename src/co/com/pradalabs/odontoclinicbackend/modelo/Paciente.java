@@ -1,8 +1,14 @@
 package co.com.pradalabs.odontoclinicbackend.modelo;
 
+
 import java.util.Calendar;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+import com.google.appengine.api.datastore.Key;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.Acompanante;
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.AvanceTratamientoOdonto;
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.AvanceTratamientoOrtho;
@@ -14,42 +20,67 @@ import co.com.pradalabs.odontoclinicbackend.modelo.paciente.HistoriaClinicaOrtho
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.TratamientoAcordadoOdonto;
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.TratamientoAcordadoOrtho;
 
+
+
+@PersistenceCapable
 public class Paciente {
-
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String DNI;
-
+	
+	@Persistent
     private DatosBasicos dsDatosBasicos;
 
+	@Persistent
     private Calendar dsFechaNacimiento;
 
+	@Persistent
     private String dsSexo;
 
+	@Persistent
     private String dsEstadoCivil;
 
+	@Persistent
     private String cdOcupacion;
 
+	@Persistent
     private String dsOcupacion;
 
+	@Persistent
     private List<Acompanante> dsAcompanante;
 
+	@Persistent
     private String dsRH;
 
+	@Persistent
     private List<HistoriaClinicaOdonto> dsHistoriasClinicasOdonto;
 
+	@Persistent
     private List<AvanceTratamientoOdonto> dsAvanceTratamientoOdonto;
 
+	@Persistent
     private List<TratamientoAcordadoOdonto> dsTratamientoAcordadoOdonto;
 
+	@Persistent
     private List<TratamientoAcordadoOrtho> dsTratamientoAcordadoOrtho;
 
+	@Persistent
     private List<AvanceTratamientoOrtho> dsAvanceTratamientoOrtho;
 
+	@Persistent
     private List<Cita> dsCitas;
 
+	@Persistent
     private List<Cuenta> dsCuentasOdonto;
 
+	@Persistent
     private List<Cuenta> dsCuentaOrtho;
 
+	@Persistent
     private List<HistoriaClinicaOrtho> dsHistoriaClinicaOrtho;
 
     public Paciente () {
@@ -206,9 +237,13 @@ public class Paciente {
     public void setSnCierre (Boolean val) {
     }
 
-    public class Unnamed {
+	public Key getKey() {
+		return key;
+	}
 
-    }
+	public void setKey(Key key) {
+		this.key = key;
+	}
 
 }
 

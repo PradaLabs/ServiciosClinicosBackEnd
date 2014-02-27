@@ -1,25 +1,47 @@
 package co.com.pradalabs.odontoclinicbackend.modelo;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class Profesional {
 
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private int cdProfesional;
-
+	
+	@Persistent
     private String dsNombreProfesional;
 
+	@Persistent
     private String dsApellidosProfesional;
 
+	@Persistent
     private String Profesion;
 
+	@Persistent
     private int nmTelefono;
 
+	@Persistent
     private String dsEmail;
 
+	@Persistent
     private int nmRegistro;
 
+	@Persistent
     private String dsIdentificacion;
 
+	@Persistent
     private int nmIdentificacion;
 
+	
     public Profesional () {
     }
 
@@ -95,5 +117,13 @@ public class Profesional {
         this.nmTelefono = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

@@ -1,20 +1,39 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class Acompanante {
 
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsNombre;
 
+	@Persistent
     private String dsApellido;
 
+	@Persistent
     private String dsTelefono;
 
+	@Persistent
     private String dsCelular;
 
+	@Persistent
     private Boolean snResponsable;
 
+	@Persistent
     private String dsParentesco;
 
+	@Persistent
     private String DNI;
 
     public Acompanante () {
@@ -76,5 +95,13 @@ public class Acompanante {
         this.snResponsable = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

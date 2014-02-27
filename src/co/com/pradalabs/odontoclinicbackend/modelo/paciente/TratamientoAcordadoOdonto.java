@@ -1,7 +1,21 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 
-public class TratamientoAcordadoOdonto {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
+public class TratamientoAcordadoOdonto {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+
+	@Persistent
     private TratamientoAcordado dsTratamientoAcordadoOdonto;
 
     public TratamientoAcordadoOdonto () {
@@ -15,5 +29,13 @@ public class TratamientoAcordadoOdonto {
         this.dsTratamientoAcordadoOdonto = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

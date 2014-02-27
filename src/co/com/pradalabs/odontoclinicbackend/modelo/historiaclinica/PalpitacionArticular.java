@@ -1,22 +1,41 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class PalpitacionArticular {
-
+	
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+	
+	@Persistent
     private Boolean snDolorArticular;
 
+	@Persistent
     private int cdDolorArticular;
 
+	@Persistent
     private int cdLocalReposo;
 
+	@Persistent
     private int cdLocalApertura;
 
+	@Persistent
     private int cdLocalMovimiento;
 
+	@Persistent
     private int cdLocalLateralidad;
 
+	@Persistent
     private Boolean snDolorMuscular;
 
+	@Persistent
     private int cdMusculo;
 
     public PalpitacionArticular () {
@@ -86,5 +105,12 @@ public class PalpitacionArticular {
         this.snDolorMuscular = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 }
 

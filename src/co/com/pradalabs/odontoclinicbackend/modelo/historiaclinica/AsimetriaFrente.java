@@ -1,17 +1,36 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
-public class AsimetriaFrente {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
+public class AsimetriaFrente {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private Boolean snDerecho;
 
+	@Persistent
     private Boolean snIzquierdo;
 
+	@Persistent
     private Boolean snTercioSuperior;
 
+	@Persistent
     private Boolean snTercioMedio;
 
+	@Persistent
     private Boolean snTercioInferior;
 
+	@Persistent
     private Boolean PlanoOclusal;
 
     public AsimetriaFrente () {
@@ -64,6 +83,14 @@ public class AsimetriaFrente {
     public void setSnTercioSuperior (Boolean val) {
         this.snTercioSuperior = val;
     }
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 
 }
 

@@ -1,25 +1,48 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
-public class ExamenPerfil {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
+public class ExamenPerfil {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+ 
+	@Persistent
     private String dsPerfil;
 
+	@Persistent
     private int cdPerfil;
 
+	@Persistent
     private HipertoniaLabial dsHipertoniaLabial;
 
+	@Persistent
     private String dsPosicionLabial;
 
+	@Persistent
     private int cdPosicionLabial;
 
+	@Persistent
     private String dsLabiosReposo;
 
+	@Persistent
     private int cdLabiosReposo;
 
+	@Persistent
     private String dsHipotoniaLabial;
 
+	@Persistent
     private int cdHipotoniaLabial;
 
+	@Persistent
     private FrenilloSobreInsertado dsFrenilloSobreInsertado;
 
     public ExamenPerfil () {
@@ -105,5 +128,12 @@ public class ExamenPerfil {
         this.dsPosicionLabial = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 }
 

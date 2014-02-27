@@ -2,17 +2,32 @@ package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
 import co.com.pradalabs.odontoclinicbackend.modelo.Abono;
 
-
+@PersistenceCapable
 public class Cuenta {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
 
+	@Persistent
     private int vlrTratamiento;
 
+	@Persistent
     private String Observacion;
 
+	@Persistent
     private List<Abono> dsabono;
 
+	@Persistent
     private int nmTratamiento;
 
     public Cuenta () {
@@ -64,5 +79,14 @@ public class Cuenta {
         this.nmTratamiento = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
+    
 }
 

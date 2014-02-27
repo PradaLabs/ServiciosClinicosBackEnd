@@ -2,19 +2,36 @@ package co.com.pradalabs.odontoclinicbackend.modelo;
 
 import java.util.Calendar;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class Contabilidad {
-
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private int nmEgreso;
-
+	
+	@Persistent
     private String dsEgreso;
 
+	@Persistent
     private double vlrEgreso;
 
+	@Persistent
     private Calendar feEgreso;
 
+	@Persistent
     private boolean snNotificado;
 
+	@Persistent
     private int cdClinica;
 
     public Contabilidad () {
@@ -68,5 +85,13 @@ public class Contabilidad {
         this.vlrEgreso = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

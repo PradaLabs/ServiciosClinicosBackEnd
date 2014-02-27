@@ -3,45 +3,92 @@ package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.AnalisisDental;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.AnalisisFacial;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.AnalisisFuncional;
 import co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica.DiagnosticoOrtho;
 
-public class HistoriaClinicaOrtho {
 
+@PersistenceCapable
+public class HistoriaClinicaOrtho {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+
+
+	@Persistent
     private String DNI;
 
+
+	@Persistent
     private String dsEps;
 
+
+	@Persistent
     private String dsTipoVinculacion;
 
+
+	@Persistent
     private String dsAlertaMedica;
 
+
+	@Persistent
     private Calendar feHistoriaClinica;
 
+
+	@Persistent
     private int feHora;
 
+
+	@Persistent
     private String dsMotivoConsulta;
 
+
+	@Persistent
     private AnalisisFacial dsAnalisisFacial;
 
+
+	@Persistent
     private AnalisisFuncional dsAnalisisFuncional;
 
+
+	@Persistent
     private String dsAnalisisRadiografico;
 
+
+	@Persistent
     private AnalisisDental dsAnalisisDental;
 
+
+	@Persistent
     private DiagnosticoOrtho dsDiagnosticoOrtho;
 
+
+	@Persistent
     private String dsPlanTratamiento;
 
+
+	@Persistent
     private Boolean snExtraciones;
 
+
+	@Persistent
     private List<Integer> nmExtraciones;
 
+
+	@Persistent
     private String dsAparologiaComplementaria;
 
+
+	@Persistent
     private int nmHistoriaClinica;
 
     public HistoriaClinicaOrtho () {
@@ -182,6 +229,14 @@ public class HistoriaClinicaOrtho {
     public void setSnExtraciones (Boolean val) {
         this.snExtraciones = val;
     }
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 
 }
 

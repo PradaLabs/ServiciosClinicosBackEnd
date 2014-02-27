@@ -1,27 +1,50 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
-public class Habito {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
+public class Habito {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private Boolean snOnicofagia;
 
+	@Persistent
     private Boolean snRespiracionOral;
 
+	@Persistent
     private Boolean snSuccionDigital;
 
+	@Persistent
     private Boolean snSuccionLabial;
 
+	@Persistent
     private Boolean snIrterposicionLingual;
 
+	@Persistent
     private Boolean snAlteracionFoniatricas;
 
+	@Persistent
     private Boolean snEmpujeLingualS;
 
+	@Persistent
     private Boolean _EmpujeLigualC;
 
+	@Persistent
     private Boolean snDeglucionInfantil;
 
+	@Persistent
     private String dsBruxismo;
 
+	@Persistent
     private int cdBruxismo;
 
     public Habito () {
@@ -115,5 +138,12 @@ public class Habito {
         this.snSuccionLabial = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 }
 

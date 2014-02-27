@@ -1,25 +1,50 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+
+
+@PersistenceCapable
 public class ExamenFisico {
 
+		
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
     private String dsExamenFisico;
 
+	@Persistent
     private String dsTbCarrillo;
 
+	@Persistent
     private String dsTbFrenillo;
 
+	@Persistent
     private String dsTbLengua;
 
+	@Persistent
     private String dsTbPaladar;
 
+	@Persistent
     private String dsTbEncia;
 
+	@Persistent
     private String dsMoColor;
 
+	@Persistent
     private String dsTbMoTextura;
 
+	@Persistent
     private String dsRecilencia;
 
+	@Persistent
     private String Saliva;
 
     public ExamenFisico () {
@@ -105,5 +130,13 @@ public class ExamenFisico {
         this.dsTbPaladar = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

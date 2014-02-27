@@ -1,25 +1,48 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
-public class AnalisisEspacio {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+
+@PersistenceCapable
+public class AnalisisEspacio {
+	
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+	
+	@Persistent
     private int nmSuperiorDisponible;
 
+	@Persistent
     private int nmInferiorDisponible;
 
+	@Persistent
     private int nmSuperiorReuqerido;
 
+	@Persistent
     private int nmInferiorRquerido;
 
+	@Persistent
     private int nmSuperiorDiferencia;
 
+	@Persistent
     private int nmInferiorDiferencia;
 
+	@Persistent
     private Boolean Apinamiento;
 
+	@Persistent
     private int cdApinamiento;
 
+	@Persistent
     private Boolean snEspaciamiento;
 
+	@Persistent
     private int cdEspacioamiento;
 
     public AnalisisEspacio () {
@@ -105,5 +128,13 @@ public class AnalisisEspacio {
         this.snEspaciamiento = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+    
 }
 

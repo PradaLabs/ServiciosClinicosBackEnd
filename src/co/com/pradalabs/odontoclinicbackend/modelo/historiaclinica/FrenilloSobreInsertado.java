@@ -1,15 +1,32 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica; 
 
-public class FrenilloSobreInsertado {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
+public class FrenilloSobreInsertado {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+
+	@Persistent
     private Boolean snFrenilloSobreInsertado;
 
+	@Persistent
     private Boolean snSuperior;
 
+	@Persistent
     private Boolean snInferior;
 
+	@Persistent
     private Boolean snLateral;
 
+	@Persistent
     private Boolean snLingual;
 
     public FrenilloSobreInsertado () {
@@ -55,5 +72,12 @@ public class FrenilloSobreInsertado {
         this.snSuperior = val;
     }
 
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 }
 

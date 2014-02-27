@@ -1,24 +1,40 @@
 package co.com.pradalabs.odontoclinicbackend.modelo.historiaclinica;
 
-public class RuidosArticulares {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
+public class RuidosArticulares {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+
+	@Persistent
     private Boolean snRuidosArticulares;
 
+	@Persistent
     private Boolean snCliking;
 
+	@Persistent
     private Boolean snCrepitacion;
 
+	@Persistent
     private Boolean snDerecho;
 
+	@Persistent
     private Boolean snIzquierdo;
 
+	@Persistent
     private Boolean snBilateral;
 
     public RuidosArticulares () {
     }
 
-    public void Unnamed () {
-    }
 
     public Boolean getSnBilateral () {
         return snBilateral;
@@ -67,6 +83,16 @@ public class RuidosArticulares {
     public void setSnRuidosArticulares (Boolean val) {
         this.snRuidosArticulares = val;
     }
+
+
+	public Key getKey() {
+		return key;
+	}
+
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 
 }
 
