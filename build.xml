@@ -1,10 +1,11 @@
 <project name="ServiciosClinicosBackEnd" default="datanucleusenhance">
-     <property file="build.properties" />
-     <property name="release_version" value="1.1"/>
-     <property name="appengine_webxml_tpl_file" value="war/WEB-INF/appengine-web.xml.tpl"/>
-     <property name="appengine_webxml_file" value="war/WEB-INF/appengine-web.xml"/>
-    <import file="${sdk.dir}/config/user/ant-macros.xml" /> 
-   	<path id="project.classpath">
+        <property file="build.properties" />
+        <property name="release_version" value="1.1"/>
+        <property name="appengine_webxml_tpl_file" value="war/WEB-INF/appengine-web.xml.tpl"/>
+        <property name="appengine_webxml_file" value="war/WEB-INF/appengine-web.xml"/>
+        <import file="${sdk.dir}/config/user/ant-macros.xml" />
+
+        <path id="project.classpath">
                 <pathelement path="war/WEB-INF/classes" />
                 <fileset dir="war/WEB-INF/lib">
                         <include name="**/*.jar" />
@@ -13,13 +14,15 @@
                         <include name="shared/**/*.jar" />
                 </fileset>
         </path>
-           <target name="init" description="Copies the App Engine JARs to the WAR.">
+
+        <target name="init" description="Copies the App Engine JARs to the WAR.">
                 <delete quiet="true" file="${appengine_webxml_file}"/>
                 <copy file="${appengine_webxml_tpl_file}" tofile="${appengine_webxml_file}">
                         <filterchain>
                                 <replacetokens>
                                         <token key="applicationId" value="${application.id}"/>
-                                        <token key="applicationVersion" value="${application.version}"/>
+                                        <token key="applicationVersion"
+                  value="${application.version}"/>
                                         <token key="cloudSQLConnectionUrl" value="${cloud.sql.jdbc.url}"/>
                                         <token key="cloudStorageBucketName" value="${cloud.storage.bucket.name}"/>
                                         <token key="entityManagerFactory"
@@ -27,22 +30,21 @@
                                 </replacetokens>
                         </filterchain>
                 </copy>
-               <copy 
-                   todir="war/WEB-INF/lib"  
-                   flatten="true">
-				      <fileset dir="${sdk.dir}/lib/user">
-				        <include name="**/appengine-api-1.0-sdk*.jar" />
-				      </fileset>
-				      <fileset dir="${sdk.dir}/lib/opt/user">
-				        <include name="appengine-api-labs/v1/*.jar" />
-				        <include name="jsr107/v1/*.jar" />
-				        <include name="datanucleus/v2/*.jar" />
-				      </fileset>
-   				 </copy>
+                <copy todir="war/WEB-INF/lib" flatten="true">
+                        <fileset dir="${sdk.dir}/lib/user">
+                                <include name="**/*.jar" />
+                                <exclude name="**/appengine-api-labs-*.jar"/>
+                        </fileset>
+                        <fileset dir="${sdk.dir}/lib/opt/user/appengine-endpoints/v1">
+                                <include name="**/*.jar" />
+                        </fileset>
+                        <fileset dir="${sdk.dir}/lib/opt/user/appengine-api-labs/v1">
+                                <include name="**/*.jar" />
+                        </fileset>
+                </copy>
         </target>
 
-
-      <target name="compile"   depends="init"
+        <target name="compile" depends="init"
                 description="Compiles Java source and copies other source files to the WAR.">
                 <mkdir dir="war/WEB-INF/classes" />
                 <copy todir="war/WEB-INF/classes">
@@ -50,21 +52,15 @@
                                 <exclude name="**/*.java" />
                         </fileset>
                 </copy>
-                
-                <javac includeantruntime="true" srcdir="src" destdir="war/WEB-INF/classes" classpathref="project.classpath"
+                <javac srcdir="src" destdir="war/WEB-INF/classes" classpathref="project.classpath"
                         debug="on" />
-        </target> 
+        </target>
 
 
-	     <target name="datanucleusenhance" 
-		      description="Performs enhancement on compiled data classes.">
-		      <enhance_war war="war">
-		              <args>
-		              <arg value="-enhancerVersion"/>
-		              <arg value="v2"/>
-		          </args>
-		      </enhance_war>
-	  	</target>
+        <target name="datanucleusenhance" depends="compile"
+                description="Performs JDO enhancement on compiled data classes.">
+                <enhance_war war="war" />
+        </target>
 
         <target name="runserver" depends="datanucleusenhance"
                 description="Starts the development server.">
@@ -92,10 +88,10 @@
         </target>
 
         <target name="dist-tar" depends="clean">
-          <tar destfile="Odonto-Clinic-Back-End-${release_version}.tar" basedir="." excludes="*.tar, *.zip, **/.svn/**, .settings/**"/>
+          <tar destfile="photo-sharing-demo-${release_version}.tar" basedir="." excludes="*.tar, *.zip, **/.svn/**, .settings/**"/>
         </target>
         <target name="dist-zip" depends="clean">
-          <zip destfile="Odonto-Clinic-Back-End-${release_version}.zip" basedir="." excludes="*.tar, *.zip, **/.svn/**, .settings/**"/>
+          <zip destfile="photo-sharing-demo-${release_version}.zip" basedir="." excludes="*.tar, *.zip, **/.svn/**, .settings/**"/>
         </target>
         <target name="clean">
                 <delete quiet="true">
@@ -106,5 +102,4 @@
                 <delete quiet="true" file="${appengine_webxml_file}"/>
         </target>
 </project>
-
 	
