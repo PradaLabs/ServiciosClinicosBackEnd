@@ -1,7 +1,7 @@
 package co.com.pradalabs.odontoclinicbackend.modelo;
 
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -36,7 +36,7 @@ public class Paciente {
     private DatosBasicos dsDatosBasicos;
 
 	@Persistent
-    private Calendar dsFechaNacimiento;
+    private Date dsFechaNacimiento;
 
 	@Persistent
     private String dsSexo;
@@ -166,11 +166,11 @@ public class Paciente {
         this.dsEstadoCivil = val;
     }
 
-    public Calendar getDsFechaNacimiento () {
+    public Date getDsFechaNacimiento () {
         return dsFechaNacimiento;
     }
 
-    public void setDsFechaNacimiento (Calendar val) {
+    public void setDsFechaNacimiento (Date val) {
         this.dsFechaNacimiento = val;
     }
 

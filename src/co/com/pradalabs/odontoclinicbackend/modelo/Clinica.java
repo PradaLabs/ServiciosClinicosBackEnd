@@ -37,7 +37,7 @@ public class Clinica {
     private List<Admin> dsAdmin;
     
     
-    @Persistent(mappedBy = "clinica")
+    @Persistent
     private List<Contabilidad> dsContabilidad;
     
 
@@ -112,11 +112,11 @@ public class Clinica {
 		this.listaPrecios = listaPrecios;
 	}
 
-	public Key getId() {
+	public Key getKey() {
 		return key;
 	}
 
-	public void setId(Key key) {
+	public void setKey(Key key) {
 		this.key = key;
 	}
     

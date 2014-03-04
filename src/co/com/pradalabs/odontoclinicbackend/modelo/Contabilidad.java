@@ -1,7 +1,6 @@
 package co.com.pradalabs.odontoclinicbackend.modelo;
 
-import java.util.Calendar;
-
+import java.util.Date;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -26,7 +25,7 @@ public class Contabilidad {
     private double vlrEgreso;
 
 	@Persistent
-    private Calendar feEgreso;
+    private Date feEgreso;
 
 	@Persistent
     private boolean snNotificado;
@@ -53,11 +52,11 @@ public class Contabilidad {
         this.dsEgreso = val;
     }
 
-    public Calendar getFeEgreso () {
+    public Date getFeEgreso () {
         return feEgreso;
     }
 
-    public void setFeEgreso (Calendar val) {
+    public void setFeEgreso (Date val) {
         this.feEgreso = val;
     }
 

@@ -71,6 +71,15 @@ public class Horario {
 	public void setKey(Key key) {
 		this.key = key;
 	}
+
+	@Override
+	public String toString() {
+		return "Horario [key=" + key + ", dsHorarioHabil=" + dsHorarioHabil
+				+ ", dsHorarioEspecial=" + dsHorarioEspecial
+				+ ", dsControlHorario=" + dsControlHorario + ", cdClinica="
+				+ cdClinica + "]";
+	}
     
+	
 }
 

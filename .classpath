@@ -2,29 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="jersey"/>
-	<classpathentry kind="var" path="jersey/appengine-jsr107cache-1.8.9.jar"/>
-	<classpathentry kind="var" path="jersey/gson-2.2.2.jar"/>
-	<classpathentry kind="var" path="jersey/javax.ws.rs-api-2.0.jar"/>
-	<classpathentry kind="var" path="jersey/jersey-client.jar"/>
-	<classpathentry kind="var" path="jersey/jersey-common.jar"/>
-	<classpathentry kind="var" path="jersey/jersey-container-servlet-core.jar"/>
-	<classpathentry kind="var" path="jersey/jersey-container-servlet.jar"/>
-	<classpathentry kind="var" path="jersey/jstl-1.2.jar"/>
-	<classpathentry kind="var" path="ExtJersey/cglib-2.2.0-b21.jar"/>
-	<classpathentry kind="var" path="ExtJersey/guava-14.0.1.jar"/>
-	<classpathentry kind="var" path="ExtJersey/hk2-api-2.2.0-b21.jar"/>
-	<classpathentry kind="var" path="ExtJersey/hk2-locator-2.2.0-b21.jar"/>
-	<classpathentry kind="var" path="ExtJersey/hk2-utils-2.2.0-b21.jar"/>
-	<classpathentry kind="var" path="ExtJersey/javax.annotation-api-1.2.jar"/>
-	<classpathentry kind="var" path="ExtJersey/javax.inject-2.2.0-b21.jar"/>
-	<classpathentry kind="var" path="ExtJersey/javax.servlet-api-3.0.1.jar"/>
-	<classpathentry kind="var" path="ExtJersey/jaxb-api-2.2.7.jar"/>
-	<classpathentry kind="var" path="ExtJersey/org.osgi.core-4.2.0.jar"/>
-	<classpathentry kind="var" path="ExtJersey/osgi-resource-locator-1.0.1.jar"/>
-	<classpathentry kind="var" path="ExtJersey/persistence-api-1.0.jar"/>
-	<classpathentry kind="var" path="ExtJersey/validation-api-1.1.0.Final.jar"/>
-	<classpathentry kind="var" path="jersey/jersey-server-r.jar"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/appengine-java-sdk-1.9.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jersey"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring Security"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/wor4j"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
