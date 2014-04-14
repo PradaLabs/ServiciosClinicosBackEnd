@@ -6,11 +6,14 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
  
-    <http use-expressions="true" entry-point-ref="gaeEntryPoint">
-        <intercept-url pattern="/" access="permitAll" />
-        <intercept-url pattern="/LoginUser.htm*" access="hasRole('USER')" />
-        <intercept-url pattern="/LoginAdmin.htm*" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/**" access="hasRole('USER')" />
+    <http auto-config="true" use-expressions="true"  entry-point-ref="gaeEntryPoint">
+        <intercept-url pattern="/*AutenticacionGoogle*" access="permitAll" />
+        <intercept-url pattern="/*admin*" access="permitAll" />
+        <intercept-url pattern="/InformacionProducto*" access="hasRole('USER')" />
+        <intercept-url pattern="/InformacionProducto*" access="hasRole('ADMIN_APP')" />
+        <intercept-url pattern="/register.htm*" access="hasRole('NEW_USER')" />
+       <!--  <intercept-url pattern="/**" access="hasRole('USER')" /> -->
+         
         <custom-filter position="PRE_AUTH_FILTER" ref="gaeFilter" />
     </http>
 

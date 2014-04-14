@@ -1,23 +1,31 @@
-angular.module('plunker', ['ui.bootstrap']);
-function CarouselDemoCtrl($scope) {
-  $scope.myInterval = 5000;
-  var slides = $scope.slides = [];
-  $scope.addSlide = function() {
-    var newWidth = 600 + slides.length;
-    slides.push({
-      image: 'http://placekitten.com/' + newWidth + '/300',
-      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    });
-  };
-  for (var i=0; i<4; i++) {
-    $scope.addSlide();
-  }
-}
+var app = angular.module("Login", []);
 
 
-(function() {
- var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
- po.src = 'https://apis.google.com/js/client:plusone.js';
- var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
+app.controller("LoginCtrl",function ($scope , $http , $location) {
+	
+	var ctx = "<%=request.getContextPath()%>";
+	$scope.datos="Envio datos del cliente";
+	$scope.user='';
+	$scope.password='';
+   $scope.paginaLogueoGoogle = function(){
+	   console.log($location.absUrl());
+	   window.location.assign("/InformacionProducto")
+	   
+   }
+   $scope.servicioAutenticaciongoogle=function (){
+	   if($scope.user != '' && $scope.user != ''){
+	   httpContext.Current.Response.AddHeader("user",$scope.user);
+	   httpContext.Current.Response.AddHeader("pass",$scope.password);
+	   window.location.assign("/OdontoClinicManager.jsp");
+	   }
+//	   $http.post("rest/OdontoClinic/post", {"foo":"bar"})
+//	   .success(function(data, status, headers, config) {
+//	       $scope.data = data;
+//	       console.log(data);
+//	   }).error(function(data, status, headers, config) {
+//	       $scope.status = status;
+//	   });
+   }
+   
+});
+

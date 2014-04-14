@@ -2,46 +2,55 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>OdontoClinicBackEnd</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>LoginUser.html</welcome-file>
+    
   </welcome-file-list>
-   <!-- <filter>
-	     <filter-name>springSecurityFilterChain</filter-name>
-	     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	     <init-param>
-    		<param-name>targetBeanName</param-name>
-    		<param-value>wroFilter</param-value>
- 		 </init-param>
-  		 <init-param>
-    		<param-name>targetFilterLifecycle</param-name>
-    		<param-value>true</param-value>
- 		 </init-param>
-	</filter> 
-	<filter-mapping>
-	     <filter-name>springSecurityFilterChain</filter-name>
-	     <url-pattern>/rest/*</url-pattern>
-	</filter-mapping>  -->
+  <!-- ************************** -->
+  <!-- seguridad de la aplicacion -->
+  <!-- ************************** -->
+  		   <filter>
+			     <filter-name>springSecurityFilterChain</filter-name>
+			     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		  		 <init-param>
+		    		<param-name>targetFilterLifecycle</param-name>
+		    		<param-value>true</param-value>
+		 		 </init-param>
+			</filter> 
+			<filter-mapping>
+			     <filter-name>springSecurityFilterChain</filter-name>
+			     <url-pattern>/*</url-pattern>
+			</filter-mapping>  
+  <!-- ************************** 		-->
+  <!-- Fin seguridad de la aplicacion 	-->
+  <!-- **************************	 	-->
   <servlet>
     <description>Sample Servlet</description>
     <display-name>OdontoClinicBackEndServlet</display-name>
     <servlet-name>OdontoClinicBackEndServlet</servlet-name>
-    <servlet-class>co.com.pradalabs.odontoclinicbackend.OdontoclinicbackendServlet</servlet-class>
+    <servlet-class>co.com.pradalabs.odontoclinicbackend.servlets.OdontoclinicbackendServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>OdontoClinicBackEndServlet</servlet-name>
     <url-pattern>/odontoclinicbackend</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>Autenticacion Servlet</description>
+    <display-name>AutenticacionServelet</display-name>
+    <servlet-name>AutenticacionServelet</servlet-name>
+    <servlet-class>co.com.pradalabs.odontoclinicbackend.config.seguridad.AutenticacionServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutenticacionServelet</servlet-name>
+    <url-pattern>/AutenticacionGoogle</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
 		<servlet-name>jersey-serlvet</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>co.com.pradalabs.odontoclinicbackend.config</param-value>
+			<param-value>co.com.pradalabs.odontoclinicbackend.rest</param-value>
 		</init-param>
 	</servlet>
  
@@ -49,14 +58,15 @@
 		<servlet-name>jersey-serlvet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-		<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+	<!-- welcome-file-list>
+			<welcome-file>LoginUser.html</welcome-file>
+		</welcome-file-list -->
+	
 	<listener> 
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
 	</listener>
 	<context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring-security.xml, /WEB-INF/applicationContext.xml</param-value>
-</context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>/WEB-INF/spring-security.xml, /WEB-INF/applicationContext.xml</param-value> 
+	</context-param>
 </web-app>
