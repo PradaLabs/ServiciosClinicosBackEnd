@@ -1,6 +1,7 @@
 package co.com.pradalabs.odontoclinicbackend.modelo;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -8,9 +9,11 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
+
 import com.google.appengine.api.datastore.Key;
 
-
+@JsonPropertyOrder(alphabetic=true)
 @PersistenceCapable
 public class Clinica {
 	
@@ -43,6 +46,9 @@ public class Clinica {
 
     @Persistent
     private List<Precios> listaPrecios;
+    
+    @Persistent
+    private DatosBasicosClinica datosBasicoClinica;
     
     public Clinica () {
     }
@@ -118,6 +124,25 @@ public class Clinica {
 
 	public void setKey(Key key) {
 		this.key = key;
+	}
+
+	public DatosBasicosClinica getDatosBasicoClinica() {
+		return datosBasicoClinica;
+	}
+
+	public void setDatosBasicoClinica(DatosBasicosClinica datosBasicoClinica) {
+		this.datosBasicoClinica = datosBasicoClinica;
+	}
+
+	public Clinica inicializarclinicaClinica(Clinica clinica) {
+		Pacientes = new ArrayList<>();
+		clinica.dsProfesionales = new ArrayList<>();
+		clinica.dsHorario = new Horario();
+		clinica.dsAdmin = new ArrayList<>();
+		clinica.dsContabilidad = new  ArrayList<>();
+		clinica.listaPrecios =  new ArrayList<>();;
+		clinica.datosBasicoClinica = datosBasicoClinica;
+		return clinica;
 	}
     
 }

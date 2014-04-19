@@ -82,6 +82,9 @@ public class Paciente {
 
 	@Persistent
     private List<HistoriaClinicaOrtho> dsHistoriaClinicaOrtho;
+	
+	@Persistent
+	private String estado;
 
     public Paciente () {
     }
@@ -243,6 +246,14 @@ public class Paciente {
 
 	public void setKey(Key key) {
 		this.key = key;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

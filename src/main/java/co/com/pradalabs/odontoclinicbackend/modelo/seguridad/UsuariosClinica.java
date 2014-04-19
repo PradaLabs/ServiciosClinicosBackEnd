@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 
 public class UsuariosClinica implements Serializable {
@@ -28,7 +30,7 @@ public class UsuariosClinica implements Serializable {
      * Pre-registration constructor.
      *
     */
-
+   @JsonIgnore
    public UsuariosClinica(String userId, String emailClinica,String nickName) {
 	super();
 	this.userId = userId;
@@ -43,10 +45,25 @@ public class UsuariosClinica implements Serializable {
 	this.enabled = true;
 	}
 
+    
+   public UsuariosClinica() {
+	   this.userId = null;
+		this.emailClinica = null;
+		this.nombre = null;
+		this.apellido = null;
+		this.dni = null;
+		this.nickName=null;
+		this.grupo = null;
+		this.password = null;
+		this.authorities = null;
+		this.enabled = false;
+   }
 
-   /**
+
+/**
      *  constructor cuando se registra un Usuario
     */
+   @JsonIgnore
    public UsuariosClinica(String userId, String emailClinica, String nombre,
 		String apellido, String dni,String nickName, String grupo,String password,
 		Set<AppRole> authorities, boolean enabled) {

@@ -15,11 +15,18 @@ public class DatosBasicos {
 	private Key key;
 	
 	@Persistent
-    private String dsNombre;
-
+    private String dsPrimerNombre;
+	
 	@Persistent
-    private String dsApellido;
+	private String dsSegundoNombre;
+	
+	@Persistent
+    private String dsPrimerApellido;
+	
+	@Persistent
+    private String dsSegundoApellido;
 
+	
 	@Persistent
     private String dsTipoDocumento;
 
@@ -63,14 +70,6 @@ public class DatosBasicos {
         this.DNI = val;
     }
 
-    public String getDsApellido () {
-        return dsApellido;
-    }
-
-    public void setDsApellido (String val) {
-        this.dsApellido = val;
-    }
-
     public String getDsCelular () {
         return dsCelular;
     }
@@ -103,13 +102,7 @@ public class DatosBasicos {
         this.dsDireccion = val;
     }
 
-    public String getDsNombre () {
-        return dsNombre;
-    }
-
-    public void setDsNombre (String val) {
-        this.dsNombre = val;
-    }
+  
 
     public String getDsTelefono () {
         return dsTelefono;
@@ -134,7 +127,38 @@ public class DatosBasicos {
 	public void setKey(Key key) {
 		this.key = key;
 	}
-    
+
+	public String getDsPrimerNombre() {
+		return dsPrimerNombre;
+	}
+
+	public void setDsPrimerNombre(String dsPrimerNombre) {
+		this.dsPrimerNombre = dsPrimerNombre;
+	}
+
+	public String getDsSegundoNombre() {
+		return dsSegundoNombre;
+	}
+
+	public void setDsSegundoNombre(String dsSegundoNombre) {
+		this.dsSegundoNombre = dsSegundoNombre;
+	}
+
+	public String getDsPrimerApellido() {
+		return dsPrimerApellido;
+	}
+
+	public void setDsPrimerApellido(String dsPrimerApellido) {
+		this.dsPrimerApellido = dsPrimerApellido;
+	}
+
+	public String getDsSegundoApellido() {
+		return dsSegundoApellido;
+	}
+
+	public void setDsSegundoApellido(String dsSegundoApellido) {
+		this.dsSegundoApellido = dsSegundoApellido;
+	}
     
 }
 
