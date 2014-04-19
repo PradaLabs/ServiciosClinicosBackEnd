@@ -8,8 +8,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +20,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
+import co.com.pradalabs.odontoclinicbackend.domain.dtoservicios.UsuarioAutenticacion;
+import co.com.pradalabs.odontoclinicbackend.modelo.seguridad.AppRole;
+import co.com.pradalabs.odontoclinicbackend.modelo.seguridad.UsuariosClinica;
 import co.com.pradalabs.odontoclinicbackend.utils.ConstantesOdonto;
 
 import com.google.appengine.api.users.User;
@@ -24,7 +30,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 public class GaeAuthentication {
 	private String pathIngresado;
-	
 	private static final String REGISTRATION_URL = "register.html";
 	private static final String LOGIN_URL = "LoginUser.html";
 	@SuppressWarnings("rawtypes")
@@ -45,39 +50,89 @@ public class GaeAuthentication {
 		   
 		    
 		    if (authentication == null) {
-		      // User isn't authenticated. Check if there is a Google Accounts user
 		      User googleUser = UserServiceFactory.getUserService().getCurrentUser();
 
 		      if (googleUser != null) {
-		        // User has returned after authenticating through GAE. Need to authenticate to Spring Security.
 		        PreAuthenticatedAuthenticationToken token = new PreAuthenticatedAuthenticationToken(googleUser, null);
 		        token.setDetails(ads.buildDetails(request));
 
 		        try {
 		          authentication = authenticationManager.authenticate(token);
-		          // Setup the security context
 		          SecurityContextHolder.getContext().setAuthentication(authentication);
-		          // Send new users to the registration page.
-		          if (!validarListaRecursos(pathIngresado)) {
+		          if (authentication.getAuthorities().contains(AppRole.NEW_USER) && !validarListaRecursos(pathIngresado)) {
 		            ((HttpServletResponse) responseAutenticacion).sendRedirect(REGISTRATION_URL);
 		              return responseAutenticacion;
 		          }
 		        } catch (AuthenticationException e) {
-		         // Authentication information was rejected by the authentication manager
 		          failureHandler.onAuthenticationFailure((HttpServletRequest)request, (HttpServletResponse)response, e);
 		          return responseAutenticacion;
 		        }
 		      }
 		    }else
 		    {
-		    	if( !validarListaRecursos(pathIngresado)){
+		    	if(authentication.getAuthorities().contains(AppRole.NEW_USER) && !validarListaRecursos(pathIngresado)){
 		    	 ((HttpServletResponse) responseAutenticacion).sendRedirect(LOGIN_URL);
 		    	 return responseAutenticacion;
+		    	 }else{
+		    		 authentication=null;
 		    	 }
+		    		
+		    	 
 		    }
 		    return responseAutenticacion;
 		
 	}
+	
+	public ServletResponse AutenticarUsuario(UsuarioAutenticacion usuario,ServletRequest request,ServletResponse response, AuthenticationManager authenticationManager, AuthenticationFailureHandler failureHandler) throws IOException, ServletException{
+		ServletResponse responseAutenticacion=response;
+		AbstractAuthenticationToken authToken = null;
+		PreAuthenticatedAuthenticationToken token = null;
+		 boolean isPasswordCorecto=false;
+		User googleUser=null;
+		 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		 if (authentication == null) {
+			 if(usuario.getLogin() != null && usuario.getPassword() != null){
+				 googleUser	=new User(usuario.getLogin(), "gmail.com", usuario.getLogin(), usuario.getPassword());
+				 if (googleUser != null) {
+					 authToken=(AbstractAuthenticationToken) ((HttpServletRequest)request).getAttribute(ConstantesOdonto.TOKEN);
+					 UsuariosClinica user =  new GaeDatastoreUserRegistry().findUser(googleUser.getEmail());
+					 if(user != null){
+						 isPasswordCorecto= this.verificarPasswordUserDataStore(googleUser,user);
+					 }
+					 if(authToken == null){
+						 token = new PreAuthenticatedAuthenticationToken(googleUser, null);
+						 token.setDetails(ads.buildDetails(request));
+						 try {
+							 if(isPasswordCorecto)
+							 {
+								 authentication = authenticationManager.authenticate(token);
+								 SecurityContextHolder.getContext().setAuthentication(authentication);
+								 if(authentication.getAuthorities().contains(AppRole.NEW_USER)){
+									 ((HttpServletResponse) responseAutenticacion).sendRedirect(REGISTRATION_URL);
+						              return responseAutenticacion;
+								 }else
+								 {
+									 authToken=  new UsernamePasswordAuthenticationToken(user, user.hashCode(),authentication.getAuthorities());
+									 ((HttpServletRequest) request).getSession().setAttribute(ConstantesOdonto.TOKEN, authToken);
+								 }
+							 }
+							 
+						 }catch(AuthenticationException e){
+							 failureHandler.onAuthenticationFailure((HttpServletRequest)request, (HttpServletResponse)response, e);
+					          return responseAutenticacion;
+						 }
+					 }else
+						authentication = authenticationManager.authenticate(authToken);
+					 	SecurityContextHolder.getContext().setAuthentication(authentication);
+				 	}	
+						 
+				 }
+			 }
+		 
+		return responseAutenticacion;
+	}
+	
+	
 	private boolean validarListaRecursos(String path){
 		boolean resultado = false;
 		for(String Url:ConstantesOdonto.RecursosSinSeguridad){
@@ -88,4 +143,13 @@ public class GaeAuthentication {
 		}
 		return resultado;
 	}
+	private boolean verificarPasswordUserDataStore(User googleUser,UsuariosClinica user){
+		boolean respuesta= false;
+		if(user.getPassword().equals(googleUser.getFederatedIdentity())){
+			respuesta=true;
+		}
+		return respuesta;
+	}
+	
+
 }

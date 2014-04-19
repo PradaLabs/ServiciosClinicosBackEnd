@@ -12,9 +12,13 @@ import java.util.HashSet;
  * Authentication object representing a fully-authenticated user.
  *
  * @author Luke Taylor
+ * @modifique Andres.prada
  */
 public class GaeUserAuthentication implements Authentication {
-    private final UsuariosClinica principal;
+
+	private static final long serialVersionUID = 1L;
+	
+	private final UsuariosClinica principal;
     private final Object details;
     private boolean authenticated;
 

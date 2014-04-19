@@ -14,16 +14,15 @@ public class GoogleAccountsAuthenticationProvider implements AuthenticationProvi
     private UserRegistry userRegistry;
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-    	System.out.println("GoogleAccountsAuthenticationProvider.authenticate()");
-    	System.out.println("entra al google Account Authenticacion");
+    	
         User googleUser = (User) authentication.getPrincipal();
-        
         UsuariosClinica user = userRegistry.findUser(googleUser.getUserId());
         
-        if (user == null) {
-            // User not in registry. Needs to register
-            //user = new UsuariosClinica(googleUser.getUserId(), googleUser.getNickname(), googleUser.getEmail());
+        if (user == null) { 
+        	user = userRegistry.findUser(googleUser.getEmail());
+        	if(user == null){
         	user=new UsuariosClinica(googleUser.getUserId(), googleUser.getEmail(), googleUser.getNickname());
+        	}
         }
 
         if (!user.isEnabled()) {

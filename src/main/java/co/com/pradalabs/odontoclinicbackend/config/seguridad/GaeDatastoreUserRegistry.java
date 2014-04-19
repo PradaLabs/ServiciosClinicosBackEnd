@@ -16,7 +16,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 /**
- * Esta implementacion permite buscar y registrar usuarios en el sistema de loggeo de google 
+ *Esta implementacion permite buscar y registrar usuarios en el sistema de loggeo de google 
  * guardandolo con el Datastore API 
  * @modify Andres Prada
  */
@@ -35,9 +35,10 @@ public class GaeDatastoreUserRegistry implements UserRegistry {
    private static final String USER_AUTHORITIES = "authorities";
 
    public UsuariosClinica findUser(String userId) {
+	   
        Key key = KeyFactory.createKey(USER_TYPE, userId);
        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-       System.out.println("Busca el usuario "+ this.getClass().toString());
+       
        try {
            Entity user = datastore.get(key);
 
