@@ -17,7 +17,7 @@
 package co.com.pradalabs.odontoclinicbackend.rest;
 
 /**
- * Created with PradaLabs
+ * Created by PradaLabs
  * User: Andres Prada <andres209@google.com>
  * Date: 12/2/2014
  * Time: 8:17pm
