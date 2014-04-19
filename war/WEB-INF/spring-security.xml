@@ -6,15 +6,20 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
  
-    <http auto-config="true" use-expressions="true"  entry-point-ref="gaeEntryPoint">
+    <http  use-expressions="true"  entry-point-ref="gaeEntryPoint">
         <intercept-url pattern="/*AutenticacionGoogle*" access="permitAll" />
+        <intercept-url pattern="/*googleLogout*" access="permitAll" />
         <intercept-url pattern="/*admin*" access="permitAll" />
         <intercept-url pattern="/InformacionProducto*" access="hasRole('USER')" />
-        <intercept-url pattern="/InformacionProducto*" access="hasRole('ADMIN_APP')" />
+        <intercept-url pattern="/InformacionProducto*" access="hasRole('ADMINAPP')" />
+        <intercept-url pattern="/rest/Usuario/insertarUsuario*" access="hasRole('ADMINAPP')"/>
+        <intercept-url pattern="/*OdontoClinicManager*" access="hasAnyRole('ADMINAPP','ADMIN','USER','PROFESIONAL')" />
+        <intercept-url pattern="/Recursos/html/TableroPrincipal.jsp*" access="hasAnyRole('ADMINAPP','ADMIN','USER','PROFESIONAL')" />
         <intercept-url pattern="/register.htm*" access="hasRole('NEW_USER')" />
        <!--  <intercept-url pattern="/**" access="hasRole('USER')" /> -->
          
         <custom-filter position="PRE_AUTH_FILTER" ref="gaeFilter" />
+        <logout logout-success-url="/"  logout-url="/sign-out"/>
     </http>
 
     <b:bean id="gaeEntryPoint" class="co.com.pradalabs.odontoclinicbackend.config.seguridad.GoogleAccountsAuthenticationEntryPoint" />

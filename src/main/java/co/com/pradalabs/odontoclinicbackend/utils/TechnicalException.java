@@ -1,17 +1,14 @@
 package co.com.pradalabs.odontoclinicbackend.utils;
 
-public class TechnicalException extends Exception {
+public class TechnicalException extends BussinessException {
 
 	private static final long serialVersionUID = 1L;
-
-	public TechnicalException() {
+	private final String MENSAJE_ADMIN_SISTEMA = "Error del systema favor comunicarse con el proveedor del systema";
+	
+	public TechnicalException()  {
 		super();
 	}
 
-	public TechnicalException(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
 
 	public TechnicalException(String message, Throwable cause) {
 		super(message, cause);
@@ -23,6 +20,11 @@ public class TechnicalException extends Exception {
 
 	public TechnicalException(Throwable cause) {
 		super(cause);
+	}
+
+
+	public String getMENSAJE_ADMIN_SISTEMA() {
+		return MENSAJE_ADMIN_SISTEMA;
 	}
 	
 }

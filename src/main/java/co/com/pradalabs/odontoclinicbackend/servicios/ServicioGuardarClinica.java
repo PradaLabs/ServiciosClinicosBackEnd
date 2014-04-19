@@ -1,34 +1,38 @@
 package co.com.pradalabs.odontoclinicbackend.servicios;
 
+import java.util.HashMap;
+
 import javax.jdo.PersistenceManager;
+
+import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.paciente.DatosBasicos;
+import co.com.pradalabs.odontoclinicbackend.persistencia.PMF;
+import co.com.pradalabs.odontoclinicbackend.persistencia.Interface.IGuardarPM;
+import co.com.pradalabs.odontoclinicbackend.utils.BussinessException;
+import co.com.pradalabs.odontoclinicbackend.utils.ConstantesOdonto;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-import co.com.pradalabs.odontoclinicbackend.config.PMF;
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
-import co.com.pradalabs.odontoclinicbackend.utils.BussinessException;
-
 public class ServicioGuardarClinica {
 
-	
+	private IGuardarPM servicioGuardarClinicaAdapter;
 
 	public ServicioGuardarClinica() {
 		
 	}
 	
-	public boolean GuardarClinica(Clinica clinica) throws BussinessException{
-		if(clinica != null && clinica.getDsClinica() != null)
-		{
-			
-			PersistenceManager pm = PMF.get().getPersistenceManager();
-			String clave = clinica.getDsClinica();
-			Key key = KeyFactory.createKey(Clinica.class.getSimpleName(),clave);
-			clinica.setKey(key);
-			pm.makePersistent(clinica);
-			return true;
-		}
-		return false;
+	public void setServicioGuardarClinicaAdapter(IGuardarPM servicioGuardarClinicaAdapter) {
+		this.servicioGuardarClinicaAdapter = servicioGuardarClinicaAdapter;
+	}
+
+	public boolean GuardarClinica(Clinica clinica,String emailClinica) throws BussinessException{
+		boolean resultado = false;
+		HashMap<String, Object> datoIngresados = new HashMap<>();
+		datoIngresados.put(ConstantesOdonto.CLINICA, clinica);
+		datoIngresados.put(ConstantesOdonto.CLAVE_CLINICA, emailClinica);
+		resultado=servicioGuardarClinicaAdapter.guardar(datoIngresados);
+		return resultado;
 	};
 	
 	

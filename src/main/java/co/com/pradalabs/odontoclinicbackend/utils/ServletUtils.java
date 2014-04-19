@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServlet;
  *
  */
 public final class ServletUtils extends HttpServlet {
+	
+  private static final long serialVersionUID = 1L;
+  
   public static final String REQUEST_PARAM_NAME_PHOTO_OWNER_ID = "user";
   public static final String REQUEST_PARAM_NAME_PHOTO_ID = "id";
   public static final String REQUEST_PARAM_NAME_PRIVATE = "private";

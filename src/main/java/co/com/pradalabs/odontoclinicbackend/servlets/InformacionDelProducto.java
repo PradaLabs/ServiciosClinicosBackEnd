@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @ WebServlet("/InformacionProducto")
 public class InformacionDelProducto extends HttpServlet  {
+	private static final long serialVersionUID = 1L;
 
-	
-	
-	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 	

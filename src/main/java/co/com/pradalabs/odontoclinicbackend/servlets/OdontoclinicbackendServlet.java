@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.com.pradalabs.odontoclinicbackend.config.PMF;
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
 import co.com.pradalabs.odontoclinicbackend.modelo.prueba.Prueba;
+import co.com.pradalabs.odontoclinicbackend.persistencia.PMF;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
