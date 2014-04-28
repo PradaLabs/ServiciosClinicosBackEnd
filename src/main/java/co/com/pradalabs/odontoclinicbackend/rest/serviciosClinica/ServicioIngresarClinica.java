@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Clinica;
 import co.com.pradalabs.odontoclinicbackend.persistencia.PMF;
 
 

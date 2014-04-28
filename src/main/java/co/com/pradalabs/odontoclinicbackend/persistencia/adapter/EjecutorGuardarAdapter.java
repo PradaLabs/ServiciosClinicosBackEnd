@@ -61,6 +61,6 @@ public abstract class EjecutorGuardarAdapter  implements IGuardarPM{
 	}
 	
 	public abstract Object prepararGuardarDatos(Map<String, Object> datoIngresados) throws BussinessException;
-	
+	public abstract Key crearKeyObjetosRelacionados(Key keyObjeto,String nombreClase,String claveRelacional);
 	
 }

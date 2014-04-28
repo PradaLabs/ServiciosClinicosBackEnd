@@ -1,9 +1,5 @@
-<head>
-<script src="../../javascripts/application.js" type="text/javascript"></script>
-
-</head>
 <div class="main-content"  ng-controller="pacienteCtrl">
-  	<div class="container">
+  	<div class="container" ng-init="inicilizarInformacionPaciente(clinica.pacientes)" ng.model="clinica.pacientes">
   		<div class="row">
   			<div class="area-top clearfix">
    			 	<div class="pull-left header">
@@ -121,8 +117,17 @@
 			</div>
 	  		</div>
   			<!--fin de la estadistica  -->
-  			<div class="col-md-6">
-   				
+  			<div class="action-nav-normal">
+			 	<div class="row action-nav-row">
+   				<div class="col-sm-3 action-nav-button">
+			      <a ng-click="seleccionarVistaPaciente(0)" title="Users">
+			        <i class="icon-user"></i>
+			        <span>Nuevo Paciente:</span>
+			      </a>
+			      <span class="triangle-button green"><i class="icon-plus"></i></span>
+		   		</div>
+		   	 </div>
+		    </div>
   			</div>
   		</div>
   		<div class="col-md-12">
@@ -168,23 +173,27 @@
 		                        </thead>
 		                        <tbody role="alert" aria-live="polite" aria-relevant="all">
 		                      		
-		                            <tr class="odd" ng-model="clinica.pacientes" ng-repeat="paciente in ( clinicaFiltrada.lista = (clinica.pacientes | filter:filtro.query) )>
-		                                <td class=" sorting_1">{{nombreCompletoPaciente(paciente)}}</td>
-		                                <td class=" ">{{paciente.datosBasicos.dsTipoDocumento}}</td>
-		                                <td class=" ">{{paciente.datosBasicos.dsTelefono}}</td>
-		                                <td class="center">{paciente.datosBasicos.dsCelular}}</td>
-		                            </tr>
+		                  		    <tr class="odd" ng-model="clinica.pacientes" ng-repeat="paciente in ( clinicaFiltrada.lista = (clinica.pacientes | filter:filtro.query) ) | startFrom:(paginaActual.valor-1)*registrosXPagina.valor | limitTo:registrosXPagina.valor" ng-click="seleccionarVistaPaciente(0)">
+		                                <td class=" sorting_1" ><a>{{nombreCompletoPaciente(paciente)}}</a></td>
+		                                <td class=" "><a>{{paciente.datosBasicos.dsTipoDocumento}}</a></td>
+		                                <td class=" "><a>{{paciente.datosBasicos.dsTelefono}}</a></td>
+		                                <td class="center"><a>{{paciente.datosBasicos.dsCelular}}</a></td>
+		                            </tr> 
 		                            
 		                        </tbody>
 		                    </table>
 		                    <div class="table-footer">
-		                        <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 10 of 57 entries</div>
-		                        <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_0_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a><a tabindex="0" class="paginate_button">2</a><a tabindex="0" class="paginate_button">3</a><a tabindex="0" class="paginate_button">4</a><a tabindex="0" class="paginate_button">5</a></span><a tabindex="0" class="next paginate_button" id="DataTables_Table_0_next">Next</a><a tabindex="0" class="last paginate_button" id="DataTables_Table_0_last">Last</a></div>
+		                        <div class="dataTables_info" id="DataTables_Table_0_info">Ver {{paginaActual.valor}} - {{totalPaginas.valor}} de {{numeroTotalRegistros.valor}} Pacientes</div>
+		                       <!--  <div class="dataTables_paginate paging_full_numbers"><pagination total-items="bigTotalItems" page="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination></div> -->
 		                    </div>
+		                    	<div class="col-md-12">
+			 						<div class="dataTables_paginate paging_full_numbers"><pagination total-items="numeroTotalRegistros.valor" page="paginaActual.valor" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
+								</div>
 		                </div>
 		            </div>
 		        </div>
 		    </div>
 		</div>
+		
 	</div>
 </div>

@@ -24,6 +24,8 @@ public final class ConstantesOdonto {
 	public static final String CLINICA="clinica";
 	public static final String CLAVE_CLINICA="emailClinica";
 	public static final String CLAVE_PACIENTE="paciente";
+	public static final String RELACION_USUARIO_CLINICA="relacionUsuarioClinica";
+	public static final String CLAVE_RELACION_USUARIO_CLINICA="emailUsuario";
 	
 	
 }

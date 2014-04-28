@@ -9,7 +9,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Abono;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Abono;
 
 @PersistenceCapable
 public class Cuenta {

@@ -2,7 +2,7 @@ package co.com.pradalabs.odontoclinicbackend.servicios;
 
 import java.util.HashMap;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Clinica;
 import co.com.pradalabs.odontoclinicbackend.persistencia.Interface.IActulizarPM;
 import co.com.pradalabs.odontoclinicbackend.utils.BussinessException;
 import co.com.pradalabs.odontoclinicbackend.utils.ConstantesOdonto;

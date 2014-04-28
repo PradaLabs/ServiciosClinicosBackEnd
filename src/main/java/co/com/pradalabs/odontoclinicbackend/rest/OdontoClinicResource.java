@@ -14,9 +14,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
-import co.com.pradalabs.odontoclinicbackend.modelo.Horario;
-import co.com.pradalabs.odontoclinicbackend.modelo.Paciente;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Horario;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Paciente;
 import co.com.pradalabs.odontoclinicbackend.persistencia.PMF;
 import co.com.pradalabs.odontoclinicbackend.servicios.ServicioGuardarClinica;
 

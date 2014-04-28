@@ -3,7 +3,7 @@ package co.com.pradalabs.odontoclinicbackend.modelo.paciente;
 import java.util.Calendar;
 import java.util.List;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.RegistroFoto;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.RegistroFoto;
 
 public class AvanceTratamiento {
 

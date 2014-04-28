@@ -5,9 +5,9 @@ import java.util.Map;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
-import co.com.pradalabs.odontoclinicbackend.modelo.DatosBasicosClinica;
-import co.com.pradalabs.odontoclinicbackend.modelo.Paciente;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.DatosBasicosClinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Paciente;
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.DatosBasicos;
 import co.com.pradalabs.odontoclinicbackend.persistencia.adapter.EjecutorGuardarAdapter;
 import co.com.pradalabs.odontoclinicbackend.utils.BussinessException;
@@ -38,7 +38,7 @@ public class ServicioGuardarClinicaAdapter extends EjecutorGuardarAdapter{
 		return clinica;
 	}
 	
-	private Key crearKeyObjetosRelacionados(Key keyClinica,String nombreClase,String claveRelacional){
+	public Key crearKeyObjetosRelacionados(Key keyClinica,String nombreClase,String claveRelacional){
 		return KeyFactory.createKey(keyClinica,nombreClase,claveRelacional);
 	}
 

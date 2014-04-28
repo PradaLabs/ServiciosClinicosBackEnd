@@ -29,12 +29,6 @@ public class HistoriaClinicaOdonto {
     private String DNI;
 
 	@Persistent
-    private String dsEps;
-
-	@Persistent
-    private String dsTipoVinculacion;
-
-	@Persistent
     private String dsAlertaMedica;
 
 	@Persistent
@@ -161,14 +155,6 @@ public class HistoriaClinicaOdonto {
         this.dsEnfermedadPaciente = val;
     }
 
-    public String getDsEps () {
-        return dsEps;
-    }
-
-    public void setDsEps (String val) {
-        this.dsEps = val;
-    }
-
     public ExamenFisico getDsExamenFisico () {
         return dsExamenFisico;
     }
@@ -223,14 +209,6 @@ public class HistoriaClinicaOdonto {
 
     public void setDsProtesis (Protesis val) {
         this.dsProtesis = val;
-    }
-
-    public String getDsTipoVinculacion () {
-        return dsTipoVinculacion;
-    }
-
-    public void setDsTipoVinculacion (String val) {
-        this.dsTipoVinculacion = val;
     }
 
     public PlanTratamientoIdeal getDsTratamientoIdeal () {

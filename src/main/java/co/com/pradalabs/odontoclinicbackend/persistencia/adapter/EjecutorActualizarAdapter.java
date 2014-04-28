@@ -18,14 +18,32 @@ public abstract class EjecutorActualizarAdapter implements IActulizarPM{
 		try{
 			pm = PMF.get().getPersistenceManager();
 			Object ObjetoActualizar=prepararActualizarDatos();
-			return pm.getObjectById(ObjetoActualizar.getClass(),claveBuquedaParaActualizar( datoIngresados) );
+			ObjetoActualizar=pm.getObjectById(ObjetoActualizar.getClass(),claveBuquedaParaActualizar( datoIngresados) );
+			if(!pm.isClosed())
+				pm.close();
+			return ObjetoActualizar;
 		}catch(Exception e){
 			BussinessException bussinessException=new BussinessException("problema obtener los parametros para actualizar en BD",e.getCause() ,this.getClass().getName(),"");
 			throw bussinessException;
+		}finally{
+			
 		}
 		
 	}
-
+	@Override
+	public Object ActualizarObjeto(Map<String,Object> datoIngresados)throws BussinessException{
+		try{
+			pm = PMF.get().getPersistenceManager();
+			Object ObjetoActualizar=prepararActualizarDatos();
+			ObjetoActualizar=pm.getObjectById(ObjetoActualizar.getClass(),claveBuquedaParaActualizar( datoIngresados) );
+			return ObjetoActualizar;
+		}catch(Exception e){
+			BussinessException bussinessException=new BussinessException("problema obtener los parametros para actualizar en BD",e.getCause() ,this.getClass().getName(),"");
+			throw bussinessException;
+		}finally{
+			
+		}
+	}
 	@Override
 	public Boolean cerrarConexion()throws BussinessException{
 		boolean resultado = false;

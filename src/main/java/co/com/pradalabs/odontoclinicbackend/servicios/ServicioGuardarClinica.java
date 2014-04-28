@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import javax.jdo.PersistenceManager;
 
-import co.com.pradalabs.odontoclinicbackend.modelo.Clinica;
+import co.com.pradalabs.odontoclinicbackend.modelo.clinica.Clinica;
 import co.com.pradalabs.odontoclinicbackend.modelo.paciente.DatosBasicos;
 import co.com.pradalabs.odontoclinicbackend.persistencia.PMF;
 import co.com.pradalabs.odontoclinicbackend.persistencia.Interface.IGuardarPM;

@@ -6,5 +6,6 @@ import co.com.pradalabs.odontoclinicbackend.utils.BussinessException;
 
 public interface IActulizarPM {
 	public Object consultarObjeto(Map<String,Object> datoIngresados)throws BussinessException;
+	public Object ActualizarObjeto(Map<String,Object> datoIngresados)throws BussinessException;
 	public Boolean cerrarConexion() throws BussinessException;
 }
